@@ -58,6 +58,12 @@ const ModalContent = styled.div`
   border: "2px solid #000";
   box-shadow: ${theme.palette.background.paper};
   padding: ${theme.spacing(2, 4, 3)};
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display:none;
+  };
   background-color: ${theme.palette.primary.dark};
   :focus {
     outline: 0;

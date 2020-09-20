@@ -1,18 +1,39 @@
 import React from "react";
 import { images } from "./images";
-import "./App.css";
 import { Box, Container, Divider, Grid, Typography } from "@material-ui/core";
 import styled from "styled-components";
 import { Header } from "./component/header";
 import { theme } from "./thema";
 import { Top } from "./component/top";
 
+
+export interface open {
+  story: boolean;
+  character: boolean;
+  download: boolean;
+}
+
 function App() {
+  const [open, setOpen] = React.useState({
+    story: false,
+    character: false,
+    download: false,
+  });
+  const handleOpen = (key: keyof open) => {
+    open[key] = true;
+    setOpen({ ...open });
+  };
+
+  const handleClose = (key: keyof open) => {
+    open[key] = false;
+    setOpen({ ...open });
+  };
+
   return (
     <Container disableGutters={true}>
       <ContentWrapper>
-        <Header></Header>
-        <Top />
+        <Header open={open} handleOpen={handleOpen}></Header>
+        <Top open={open} handleOpen={handleOpen} handleClose={handleClose} />
         <Divider />
         <Box color="text.primary" m={4}>
           <Grid container>
